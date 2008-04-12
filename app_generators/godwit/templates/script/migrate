@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+
+# Boot er up!
+require 'config/boot'
+
+# FIXME
+migration = $*[0].singularize + "_migration"
+$*.clear
+
+eval("#{migration.classify}.new.run")

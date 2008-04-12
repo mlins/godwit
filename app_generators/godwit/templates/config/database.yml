@@ -1,0 +1,13 @@
+legacy:
+  adapter: sqlserver
+  mode: odbc
+  dsn: 
+  username: 
+  password: 
+
+active:
+  adapter: mysql
+  database: 
+  username: 
+  password:
+  host: 
