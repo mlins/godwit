@@ -10,9 +10,6 @@ module Godwit
       require 'active_migration'
       require 'godwit'
 
-      # Load the initializer.
-      require File.join(File.dirname(__FILE__), 'initializer')
-
       # Load the environment
       require File.join(File.dirname(__FILE__), 'environment')
 
@@ -38,6 +35,10 @@ module Godwit
       db_conf = YAML::load(File.open(File.join(File.dirname(__FILE__), 'database.yml')))
       LegacyRecord::Base.establish_connection(db_conf['legacy'])
       ActiveRecord::Base.establish_connection(db_conf['active']) unless defined? RAILS_ROOT
+      
+      # Load the initializer.
+      require File.join(File.dirname(__FILE__), 'initializer')
+      
     end
     
 end

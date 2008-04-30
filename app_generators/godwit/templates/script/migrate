@@ -3,8 +3,12 @@
 # Boot er up!
 require 'config/boot'
 
-# FIXME
-migration = $*[0].singularize + "_migration"
-$*.clear
 
-eval("#{migration.classify}.new.run")
+if $*.empty?
+  Godwit::Base.run
+else
+  migration = $*[0].camelize.constantize
+  $*.clear
+  migration.new.run
+end
+ 
