@@ -1,14 +1,43 @@
 #!/usr/bin/env ruby
 
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+
+  opts.program_name = "GodWit"
+  opts.version = "0.01"
+  opts.banner  = "Usage: migrate [options] [my_migration]\n"
+  opts.banner += "   or: migrate\n"
+  opts.separator ""
+  
+  opts.on("-n", "--no-dependencies", "No Dependencies") do |n|
+    options[:dependencies] = n
+  end
+
+  opts.on_tail("-h", "--help", "Show this message") do
+    puts opts
+    exit
+  end
+
+  opts.on_tail("-v", "--version", "Show version") do
+    puts OptionParser::Version.join('.')
+    exit
+  end
+
+end.parse!
+
 # Boot er up!
 require 'config/boot'
 
-
-if $*.empty?
+if ARGV.empty?
   Godwit::Base.run
 else
-  migration = $*[0].camelize.constantize
-  $*.clear
-  migration.new.run
+  migration = ARGV[0].camelize.constantize
+  ARGV.clear
+  if options[:dependencies].nil?
+    migration.new.run
+  else
+    migration.new.run(true)
+  end
 end
- 
