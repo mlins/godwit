@@ -28,7 +28,7 @@ class GodwitGenerator < RubiGen::Base
       # m.file     "file",         "some_file_copied"
       
       # Config
-      %w(boot.rb database.yml environment.rb initializer.rb).each do |file|
+      %w(environment.rb database.yml).each do |file|
         m.file "config/#{file}", "config/#{file}"
       end
       
@@ -36,6 +36,9 @@ class GodwitGenerator < RubiGen::Base
       %w(console migrate).each do |file|
         m.file "script/#{file}", "script/#{file}", script_options
       end
+      
+      # Script Helper
+      m.file "script/lib/console.rb", "script/lib/console.rb"
       
       # Blank Log
       m.file "log/migration.log", "log/migration.log"
@@ -76,7 +79,7 @@ EOS
     # created so don't sweat their absence here.
     BASEDIRS = %w(
       log
-      script
+      script/lib
       tmp
       config
       app/models/legacy

@@ -1,14 +1,14 @@
-# Uncomment these if you wish to borrow the ActiveRecord classes from your new
-# application.  If it's not a Rails Application, you'll have to tweak some settings on the bottom of this file.  
-#
-# You'll need to explicitly specify plugins to be loaded. 
-#
-# You'll also have to ignore certain plugins and anything else that'll isn't 
-# used by ActiveRecord.  These are just redefined by Godwit.  
+Godwit::Config.use do |config|
 
-#RAILS_ROOT = "/my/new/application/root"
-#ENV['RAILS_ENV'] ||= "production"
+  # Change this if you would like to store key maps somewhere else.
+  #
+  #config[:key_mapper_path] = File.join(Godwit::Config[:godwit_root], 'tmp')
 
-# Don't edit below here unless you know what you're doing.
+  # This will load a Rails instance to use for your active dataset.
+  #
+  #config[:rails_root] = '/my/new/rails/app'
 
-KEYMAPPER_PATH = File.join(GODWIT_ROOT, 'tmp')
+end
+
+# This is usually just a dep warning, but we want it to fail.
+Object.send :undef_method, :id

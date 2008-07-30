@@ -2,7 +2,7 @@ require 'godwit/version'
 
 AUTHOR = 'Matt Lins'  # can also be an array of Authors
 EMAIL = "mattlins@gmail.com"
-DESCRIPTION = "description of gem"
+DESCRIPTION = "A framework to assist in the migration of data from legacy databases."
 GEM_NAME = 'godwit' # what ppl will type to install your gem
 RUBYFORGE_PROJECT = 'godwit' # The unix name for your project
 HOMEPATH = "http://#{RUBYFORGE_PROJECT}.rubyforge.org"
@@ -60,7 +60,7 @@ $hoe = Hoe.new(GEM_NAME, VERS) do |p|
   p.changes = p.paragraphs_of("History.txt", 0..1).join("\n\n")
   p.extra_deps = [['activesupport', '>=2.0.2'],
                   ['activerecord',  '>=2.0.2'],
-                  ['active_migration', '>=0.0.1'],
+                  ['active_migration', '>=1.0.0'],
                   ['rubigen', '>=1.2.4']]    
                   
   #p.spec_extras = {}    # A hash of extra values to set in the gemspec.

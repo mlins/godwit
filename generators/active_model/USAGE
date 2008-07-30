@@ -1,0 +1,5 @@
+Description:
+Generates an active model.  
+  
+Usage:
+./script generate active_model [model_name]

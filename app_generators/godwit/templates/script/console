@@ -2,7 +2,7 @@
 irb = RUBY_PLATFORM =~ /(:?mswin|mingw)/ ? 'irb.bat' : 'irb'
  
 libs =  " -r irb/completion"
-libs <<  " -r #{File.join(File.dirname(__FILE__), '../config/boot.rb')}"
+libs =  " -r #{File.dirname(__FILE__)}/lib/console.rb"
 
 puts "Loading Godwit Environment..."
 exec "#{irb} #{libs} --simple-prompt"
