@@ -1,9 +1,5 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-require 'rubygems'
-require 'rubigen'
-require 'rubigen/scripts/generate'
-
 describe 'ActiveModelGenerator' do
   
   include GeneratorSpecHelper
@@ -18,6 +14,10 @@ describe 'ActiveModelGenerator' do
   it "should generate an active model" do
     silence_generator { @generator.run(['blah'], :generator => 'active_model') }
     File.file?(File.join(APP_ROOT, 'app', 'models', 'blah.rb')).should be_true
+  end
+  
+  after do
+    FileUtils.rm_rf(File.join(APP_ROOT, 'app'))
   end
   
 end

@@ -1,9 +1,5 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-require 'rubygems'
-require 'rubigen'
-require 'rubigen/scripts/generate'
-
 describe 'GodwitGenerator' do
   
   include GeneratorSpecHelper

@@ -1,10 +1,14 @@
 begin
   require 'spec'
+  require 'rubigen'
 rescue LoadError
   require 'rubygems'
   gem 'rspec'
   require 'spec'
+  require 'rubigen'
 end
+
+require 'rubigen/scripts/generate'
 
 APP_ROOT = File.dirname(__FILE__) + "/../tmp"
 

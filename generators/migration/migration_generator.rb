@@ -1,23 +1,25 @@
-class ActiveModelGenerator < RubiGen::Base
+class MigrationGenerator < RubiGen::Base
 
   default_options :author => nil
 
-  attr_reader :name
+  attr_reader :name, :active_model, :legacy_model
 
   def initialize(runtime_args, runtime_options = {})
     super
     usage if args.empty?
     @name = args.shift
     extract_options
+    @active_model = args.shift
+    @legacy_model = args.shift
   end
 
   def manifest
     record do |m|
       # Ensure appropriate folder(s) exists
-      m.directory 'app/models/'
+      m.directory 'app/migrations/'
 
       # Create stubs
-      m.template "active_model.rb",  "app/models/#{@name}.rb"
+      m.template "migration.rb",  "app/migrations/#{@name}_migration.rb"
       # m.template_copy_each ["template.rb", "template2.rb"]
       # m.file     "file",         "some_file_copied"
       # m.file_copy_each ["path/to/file", "path/to/file2"]

@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-describe 'LegacyModelGenerator' do
+describe 'MigrationGenerator' do
   
   include GeneratorSpecHelper
   
@@ -11,9 +11,9 @@ describe 'LegacyModelGenerator' do
     @generator = RubiGen::Scripts::Generate.new
   end
   
-  it "should generate a legacy model in the legacy models directory" do
-    silence_generator { @generator.run(['blah'], :generator => 'legacy_model') }
-    File.file?(File.join(APP_ROOT, 'app', 'models', 'legacy', 'blah.rb')).should be_true
+  it "should generate a migration in the migrations directory" do
+    silence_generator { @generator.run(['blah', '1', '2'], :generator => 'migration') }
+    File.file?(File.join(APP_ROOT, 'app', 'migrations', 'blah_migration.rb')).should be_true
   end
   
   after do
