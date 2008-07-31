@@ -1,8 +1,7 @@
 module Godwit
-  class Base
+  module Base
 
     def self.migrate
-      Godwit::Bootloader.boot
       Dir.foreach(File.join(Godwit::Config[:godwit_root], 'app', 'migrations')) do |file|
         next unless file.ends_with?('migration.rb')
         migration = file[0..-4].camelize.constantize

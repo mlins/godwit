@@ -13,11 +13,12 @@ require 'godwit/legacy_record'
 require 'godwit/version'
 
 module Godwit
-
+  def self.boot
+    Godwit::Bootloader.boot
+  end
   def self.migrate
     Godwit::Base.migrate
   end
-
 end
 
 ActiveMigration::Base.class_eval do
@@ -25,7 +26,7 @@ ActiveMigration::Base.class_eval do
   def handle_error(model, error_field, error_message)
     puts "********************************************************************"
     begin
-      puts "Failed on " + model.id + " because '" + error_field.to_s + "' " + error_message.to_s
+      puts "Failed on " + model.id.to_s + " because '" + error_field.to_s + "' " + error_message.to_s
     rescue
       puts "Failed on associated model: #{model.class.to_s} because #{error_field.to_s} #{error_message.to_s}"
     end
@@ -37,7 +38,7 @@ ActiveMigration::Base.class_eval do
   end
 
   def handle_success(model)
-    puts "Successfully migrated " + model.id
+    puts "Successfully migrated " + model.id.to_s
   end
 
 end

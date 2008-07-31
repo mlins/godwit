@@ -1,5 +1,5 @@
 module Godwit
-  class Bootloader
+  module Bootloader
   
     class << self
   
@@ -8,8 +8,8 @@ module Godwit
       def boot(argv=ARGV)
         return true if booted?
         load_config(argv)
-        set_load_path
         load_rails
+        set_load_path
         set_logger
         init_db
         init_am
@@ -18,6 +18,12 @@ module Godwit
       
       def booted?
         @booted ||= false
+      end
+      
+      def load_rails
+        unless Godwit::Config[:rails_root].nil?
+          require "#{Godwit::Config[:rails_root]}/config/environment"
+        end
       end
       
       def load_config(argv=ARGV)
@@ -30,12 +36,6 @@ module Godwit
         $:.concat [File.join(Godwit::Config[:godwit_root], 'app', 'models'),
                    File.join(Godwit::Config[:godwit_root], 'app', 'migrations')]
         Dependencies.load_paths.concat $:           
-      end
-      
-      def load_rails
-        unless Godwit::Config[:rails_root].nil?
-          require "#{Godwit::Config[:rails_root]}/config/environment"
-        end
       end
       
       def set_logger

@@ -49,13 +49,17 @@ module Godwit
       # Sets up the configuration by storing the given settings.
       #
       def setup(settings = {})
-        @configuration = defaults.merge(settings)
+        @configuration ||= {}
+        if @configuration == {}
+          @configuration = defaults.merge(settings)
+        else
+          @configuration.merge!(settings)
+        end
       end
       
       # Parses command line arguments and stores them in the config.
       #
       def parse_args(argv = ARGV)
-        @configuration ||= {}
         options = {}
         opts = OptionParser.new do |opts|
 

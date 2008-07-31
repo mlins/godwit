@@ -12,7 +12,7 @@ describe 'GodwitGenerator' do
     @test_path = File.join(File.dirname(__FILE__), '..', 'tmp', 'test')
   end
 
-  %w(tmp script log config app/models/legacy app/migrations).each do |dir| 
+  %w(tmp script log config app/models/legacy app/migrations lib vendor).each do |dir| 
     it "should create the '#{dir}' directory" do
       silence_generator { @generator.run(['tmp/test'], :generator => 'godwit') }
       File.directory?(File.join(@test_path, dir)).should be_true
