@@ -19,7 +19,7 @@ describe 'GodwitGenerator' do
     end
   end
 
-  %w(config/database.yml config/environment.rb log/migration.log
+  %w(config/database.yml config/environment.rb log/active_migration.log log/active_record.log
   script/console script/migrate script/generate script/destroy script/lib/console.rb).each do |file|
     it "should create the '#{file}' file" do
       silence_generator { @generator.run(['tmp/test'], :generator => 'godwit') }

@@ -7,7 +7,8 @@ app_generators/godwit/USAGE
 app_generators/godwit/godwit_generator.rb
 app_generators/godwit/templates/config/database.yml
 app_generators/godwit/templates/config/environment.rb
-app_generators/godwit/templates/log/migration.log
+app_generators/godwit/templates/log/active_record.log
+app_generators/godwit/templates/log/active_migration.log
 app_generators/godwit/templates/script/console
 app_generators/godwit/templates/script/lib/console.rb
 app_generators/godwit/templates/script/migrate
@@ -18,9 +19,12 @@ generators/legacy_model/USAGE
 generators/legacy_model/legacy_model_generator.rb
 generators/legacy_model/templates/legacy_model.rb
 lib/godwit.rb
+lib/godwit/active_migration.rb
 lib/godwit/base.rb
 lib/godwit/bootloader.rb
 lib/godwit/config.rb
+lib/godwit/irb.rb
+lib/godwit/buffer.rb
 lib/godwit/legacy_record.rb
 lib/godwit/version.rb
 log/debug.log
@@ -29,6 +33,11 @@ script/destroy
 script/generate
 script/txt2html
 setup.rb
+spec/buffer_spec.rb
+spec/config_spec.rb
+spec/active_model_generator_spec.rb
+spec/legacy_model_generator_spec.rb
+spec/migration_generator_spec.rb
 spec/godwit_generator_spec.rb
 spec/spec.opts
 spec/spec_helper.rb

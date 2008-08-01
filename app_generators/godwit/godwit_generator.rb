@@ -41,7 +41,8 @@ class GodwitGenerator < RubiGen::Base
       m.file "script/lib/console.rb", "script/lib/console.rb"
       
       # Blank Log
-      m.file "log/migration.log", "log/migration.log"
+      m.file "log/active_migration.log", "log/active_migration.log"
+      m.file "log/active_record.log", "log/active_record.log"
       
       m.dependency "install_rubigen_scripts", [destination_root, 'godwit'], 
         :shebang => options[:shebang], :collision => :force

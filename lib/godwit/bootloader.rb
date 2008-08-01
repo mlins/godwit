@@ -6,14 +6,21 @@ module Godwit
       attr_accessor :booted
   
       def boot(argv=ARGV)
-        return true if booted?
+        return if booted?
         load_config(argv)
+        display_init unless Godwit::Config[:silence]
         load_rails
         set_load_path
         set_logger
         init_db
         init_am
         @booted = true
+      end
+      
+      def display_init
+        system('clear')
+        Godwit::Buffer.puts "Godwit " + Godwit::VERSION::STRING
+        Godwit::Buffer.puts "\nInitializaing..."
       end
       
       def booted?
@@ -39,7 +46,10 @@ module Godwit
       end
       
       def set_logger
-        ActiveRecord::Base.logger = Logger.new(File.open(File.join(Godwit::Config[:godwit_root], 'log', 'migration.log'), File::WRONLY | File::APPEND))
+        ActiveRecord::Base.logger = Godwit::Config[:active_record_log]
+        ActiveRecord::Base.logger.level = Godwit::Config[:active_record_log_level]
+        ActiveMigration::Base.logger = Godwit::Config[:active_migration_log]
+        ActiveMigration::Base.logger.level = Godwit::Config[:active_migration_log_level]
       end
       
       def init_db

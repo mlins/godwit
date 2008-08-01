@@ -10,10 +10,18 @@ module Godwit
       # Default configuration details.
       def defaults
         @defaults ||= {
-          :godwit_root       => Dir.pwd,
-          :rails_root        => nil,
-          :key_mapper_path   => File.join(Dir.pwd, 'tmp'),
-          :skip_dependencies => false,
+          :godwit_root                => Dir.pwd,
+          :active_record_log          => nil,
+          :active_record_log_level    => nil,
+          :active_migration_log       => nil,
+          :active_migration_log_level => nil,
+          :rails_root                 => nil,
+          :key_mapper_path            => File.join(Dir.pwd, 'tmp'),
+          :skip_dependencies          => false,
+          :skip_migrations            => [],
+          :specific_migration         => nil,
+          :silence                    => false,
+          :debug                      => false
         }
       end
       
@@ -65,12 +73,27 @@ module Godwit
 
           opts.program_name = "Godwit"
           opts.version = Godwit::VERSION::STRING
-          opts.banner  = "Usage: migrate [options] [my_migration]\n"
-          opts.banner += "   or: migrate\n"
+          opts.banner  = "Usage: migrate [OPTIONS]\n"
           opts.separator ""
 
-          opts.on("-s", "--skip-dependencies", "Skip Dependencies") do |n|
+          opts.on("-D", "--debug", "Debug mode.") do |n|
+            options[:debug] = true
+          end
+
+          opts.on("-s", "--silent", "Silence, no output, good for scripts. Silence overrides Debug(you can't debug silently)") do |n|
+            options[:silence] = true
+          end
+
+          opts.on("-m", "--skip-migrations X,Y,Z", Array, "Use underscores. Won't skip it if it's a dependency, make sure you use -d too if you need that.") do |migrations|
+            options[:skip_migrations] = migrations
+          end
+
+          opts.on("-d", "--skip-dependencies", "Skip Dependencies") do |n|
             options[:skip_dependencies] = true
+          end
+          
+          opts.on("-S", "--specific-migration MIGRATION", "Specific Migration. Use underscores. Ex. products_migration.") do |migration|
+            options[:specific_migration] = migration
           end
 
           opts.on_tail("-h", "--help", "Show this message") do
@@ -79,7 +102,7 @@ module Godwit
           end
 
           opts.on_tail("-v", "--version", "Show version") do
-            puts Godwit::Version::STRING
+            puts 'Godwit ' + Godwit::VERSION::STRING
             exit
           end
 

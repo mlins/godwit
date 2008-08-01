@@ -6,10 +6,13 @@ require 'active_support'
 require 'active_record'
 require 'active_migration'
 
+require 'godwit/active_migration'
 require 'godwit/base'
 require 'godwit/bootloader'
+require 'godwit/buffer'
 require 'godwit/config'
 require 'godwit/legacy_record'
+require 'godwit/irb'
 require 'godwit/version'
 
 module Godwit
@@ -17,28 +20,9 @@ module Godwit
     Godwit::Bootloader.boot
   end
   def self.migrate
+    Godwit.boot
+    Godwit::Buffer.puts "\nLoading Migrations..." unless Godwit::Config[:silence]
     Godwit::Base.migrate
+    Godwit::Buffer.puts "\nDone." unless Godwit::Config[:silence]  
   end
-end
-
-ActiveMigration::Base.class_eval do
-  
-  def handle_error(model, error_field, error_message)
-    puts "********************************************************************"
-    begin
-      puts "Failed on " + model.id.to_s + " because '" + error_field.to_s + "' " + error_message.to_s
-    rescue
-      puts "Failed on associated model: #{model.class.to_s} because #{error_field.to_s} #{error_message.to_s}"
-    end
-    puts "The current value of '#{error_field.to_s}' is: '" + model.instance_eval(error_field).to_s + "'"
-    print "Please enter a new value for '#{error_field}': "
-    new_value = gets
-    puts "********************************************************************"
-    new_value.chomp
-  end
-
-  def handle_success(model)
-    puts "Successfully migrated " + model.id.to_s
-  end
-
 end
