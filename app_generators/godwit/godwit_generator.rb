@@ -81,6 +81,8 @@ EOS
     BASEDIRS = %w(
       lib
       vendor
+      vendor/plugins
+      data
       log
       script/lib
       tmp

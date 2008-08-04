@@ -14,6 +14,7 @@ module Godwit
         set_logger
         init_db
         init_am
+        load_plugins
         @booted = true
       end
       
@@ -42,6 +43,9 @@ module Godwit
       def set_load_path
         $:.concat [File.join(Godwit::Config[:godwit_root], 'app', 'models'),
                    File.join(Godwit::Config[:godwit_root], 'app', 'migrations')]
+        Dir[File.join(Godwit::Config[:godwit_root], 'vendor', 'plugins', '*', 'lib')].each do |dir|
+          $:.push dir
+        end
         Dependencies.load_paths.concat $:           
       end
       
@@ -60,6 +64,12 @@ module Godwit
       
       def init_am
         ActiveMigration::KeyMapper.storage_path = Godwit::Config[:key_mapper_path]
+      end
+      
+      def load_plugins
+        Dir[File.join(Godwit::Config[:godwit_root], 'vendor', 'plugins', '*', 'init.rb')].each do |init|
+          require init
+        end
       end
       
     end
