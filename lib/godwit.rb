@@ -13,16 +13,9 @@ require 'godwit/buffer'
 require 'godwit/config'
 require 'godwit/legacy_record'
 require 'godwit/irb'
+require 'godwit/callbacks'
 require 'godwit/version'
 
-module Godwit
-  def self.boot
-    Godwit::Bootloader.boot
-  end
-  def self.migrate
-    Godwit.boot
-    Godwit::Buffer.puts "\nLoading Migrations..." unless Godwit::Config[:silence]
-    Godwit::Base.migrate
-    Godwit::Buffer.puts "\nDone." unless Godwit::Config[:silence]  
-  end
+Godwit::Base.class_eval do
+  include Godwit::Callbacks
 end

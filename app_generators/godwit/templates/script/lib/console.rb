@@ -1,3 +1,3 @@
 require 'rubygems'
 require 'godwit'
-Godwit.boot
+Godwit::Base.new

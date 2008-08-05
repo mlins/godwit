@@ -1,17 +1,32 @@
-require File.dirname(__FILE__) + '/spec_helper.rb'
+module Godwit
+  module Callbacks
+    
+    CALLBACKS = %w(before_run after_run)
 
-require File.join(File.dirname(__FILE__), '..', 'lib', 'godwit')
+    def self.included(base)
+      base.send :alias_method_chain, :run, :callbacks
+      base.send :include, ActiveSupport::Callbacks
+      base.define_callbacks *CALLBACKS
+    end
 
-describe 'Godwit::Callbacks' do
+    # This is called before you anything actually starts.
+    #
+    def before_run() end
+    # This is called after everything else finishes.
+    #
+    def after_run() end  
+    def run_with_callbacks #:nodoc:
+      callback(:before_run)
+      run_without_callbacks
+      callback(:after_run)
+    end
+      
+    private
 
-  it "should call #before_migrate" do
-    Godwit::Base.should_receive(:before_migrate).once
-    Godwit.migrate
+    def callback(method) #:nodoc:
+      run_callbacks(method)
+      send(method)
+    end
+    
   end
-  
-  it "should call #after_migrate" do
-    Godwit::Base.should_receive(:after_migrate).once
-    Godwit.migrate
-  end
-
 end

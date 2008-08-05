@@ -41,7 +41,7 @@ script/txt2html
 setup.rb
 spec/active_model_generator_spec.rb
 spec/buffer_spec.rb
-spec/callbacks.rb
+spec/callbacks_spec.rb
 spec/config_spec.rb
 spec/godwit_generator_spec.rb
 spec/legacy_model_generator_spec.rb
