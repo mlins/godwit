@@ -1,0 +1,8 @@
+require 'godwit'
+
+Godwit::Config.setup
+Godwit::Config[:silence] = true
+Godwit::Base.new
+
+Dir["#{Godwit::Config[:godwit_root]}/vendor/plugins/*/**/tasks/**/*.rake"].sort.each { |ext| load ext }
+Dir["#{Godwit::Config[:godwit_root]}/lib/tasks/**/*.rake"].sort.each { |ext| load ext }

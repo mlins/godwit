@@ -5,6 +5,7 @@ README.txt
 Rakefile
 app_generators/godwit/USAGE
 app_generators/godwit/godwit_generator.rb
+app_generators/godwit/templates/Rakefile
 app_generators/godwit/templates/config/database.yml
 app_generators/godwit/templates/config/environment.rb
 app_generators/godwit/templates/log/active_migration.log

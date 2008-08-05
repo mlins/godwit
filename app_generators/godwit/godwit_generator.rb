@@ -44,6 +44,8 @@ class GodwitGenerator < RubiGen::Base
       m.file "log/active_migration.log", "log/active_migration.log"
       m.file "log/active_record.log", "log/active_record.log"
       
+      m.file "Rakefile", "Rakefile"
+      
       m.dependency "install_rubigen_scripts", [destination_root, 'godwit'], 
         :shebang => options[:shebang], :collision => :force
     end
