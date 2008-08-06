@@ -1,4 +1,4 @@
-class <%= name.camelize %> < ActiveMigration::Base
+class <%= name.camelize %>Migration < ActiveMigration::Base
   
   set_active_model '<%= active_model %>'
   
