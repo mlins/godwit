@@ -13,7 +13,7 @@ module ActiveMigration
         puts "\n\n\n"
         raise ActiveMigrationError, 'Failed to save the active record. You should check the logs or run migrate with the -d option to debug.' 
       end
-      unless @error
+      unless @error || @skip
         debugger
         @error = true
       else
