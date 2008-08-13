@@ -16,7 +16,7 @@ module Godwit
           :active_migration_log       => nil,
           :active_migration_log_level => nil,
           :rails_root                 => nil,
-          :key_mapper_path            => File.join(Dir.pwd, 'tmp'),
+          :key_mapper_path            => File.join(Dir.pwd, 'data', 'keymaps'),
           :skip_dependencies          => false,
           :skip_migrations            => [],
           :specific_migration         => nil,
