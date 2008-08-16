@@ -5,7 +5,7 @@ describe 'LegacyModelGenerator' do
   include GeneratorSpecHelper
   
   before do
-    source = RubiGen::PathSource.new(:component, File.join(File.dirname(__FILE__), "../generators"))
+    source = RubiGen::PathSource.new(:component, File.join(File.dirname(__FILE__), "../godwit_generators"))
     RubiGen::Base.reset_sources
     RubiGen::Base.prepend_sources source
     @generator = RubiGen::Scripts::Generate.new

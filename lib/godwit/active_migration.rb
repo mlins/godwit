@@ -68,7 +68,19 @@ module ActiveMigration
     end
     
     def success
-      @count += 1
+      if @active_record.is_a?(Array)
+        if @active_array
+          if @active_array != @active_record.object_id
+            @count += 1
+            @active_array = @active_record.object_id
+          end
+        else
+          @count += 1
+          @active_array = @active_record.object_id
+        end
+      else
+        @count += 1
+      end
       percent = ((@count.to_f / @num_of_records.to_f) * 100).to_i.to_s
       return if (@percentage == percent) && @count > 1
       @percentage = percent
