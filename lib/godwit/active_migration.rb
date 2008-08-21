@@ -6,6 +6,7 @@ module ActiveMigration
       @count = 0
       @backspaces = -1
       @percentage = 0
+      @printed_class = false
     end 
     
     def handle_error()
@@ -84,7 +85,10 @@ module ActiveMigration
       percent = ((@count.to_f / @num_of_records.to_f) * 100).to_i.to_s
       return if (@percentage == percent) && @count > 1
       @percentage = percent
-      Godwit::Buffer.print("\n" + self.class.to_s + "\t\t\t") if @count == 1 
+      if @count == 1 && !@printed_class
+        Godwit::Buffer.print("\n" + self.class.to_s + "\t\t\t")
+        @printed_class = true
+      end 
       Godwit::Buffer.print(("\b" * (@backspaces + 1)) + @percentage + '%')
       @backspaces = @percentage.length
     end
