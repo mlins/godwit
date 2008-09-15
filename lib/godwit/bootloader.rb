@@ -42,7 +42,8 @@ module Godwit
       
       def set_load_path
         $:.concat [File.join(Godwit::Config[:godwit_root], 'app', 'models'),
-                   File.join(Godwit::Config[:godwit_root], 'app', 'migrations')]
+                   File.join(Godwit::Config[:godwit_root], 'app', 'migrations'),
+                   File.join(Godwit::Config[:godwit_root], 'lib')]
         Dir[File.join(Godwit::Config[:godwit_root], 'vendor', 'plugins', '*', 'lib')].each do |dir|
           $:.push dir
         end
