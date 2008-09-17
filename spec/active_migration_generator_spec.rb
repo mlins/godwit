@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper.rb'
 
-describe 'MigrationGenerator' do
+describe 'ActiveMigrationGenerator' do
   
   include GeneratorSpecHelper
   
@@ -12,7 +12,7 @@ describe 'MigrationGenerator' do
   end
   
   it "should generate a migration in the migrations directory" do
-    silence_generator { @generator.run(['blah', '1', '2'], :generator => 'migration') }
+    silence_generator { @generator.run(['blah', '1', '2'], :generator => 'active_migration') }
     File.file?(File.join(APP_ROOT, 'app', 'migrations', 'blah_migration.rb')).should be_true
   end
   

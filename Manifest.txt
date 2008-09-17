@@ -22,9 +22,9 @@ godwit_generators/active_model/templates/active_model.rb
 godwit_generators/legacy_model/USAGE
 godwit_generators/legacy_model/legacy_model_generator.rb
 godwit_generators/legacy_model/templates/legacy_model.rb
-godwit_generators/migration/USAGE
-godwit_generators/migration/migration_generator.rb
-godwit_generators/migration/templates/migration.rb
+godwit_generators/active_migration/USAGE
+godwit_generators/active_migration/active_migration_generator.rb
+godwit_generators/active_migration/templates/active_migration.rb
 lib/godwit.rb
 lib/godwit/active_migration.rb
 lib/godwit/base.rb
@@ -46,7 +46,7 @@ spec/callbacks_spec.rb
 spec/config_spec.rb
 spec/godwit_generator_spec.rb
 spec/legacy_model_generator_spec.rb
-spec/migration_generator_spec.rb
+spec/active_migration_generator_spec.rb
 spec/spec.opts
 spec/spec_helper.rb
 tasks/deployment.rake

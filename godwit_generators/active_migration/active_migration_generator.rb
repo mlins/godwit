@@ -1,4 +1,4 @@
-class MigrationGenerator < RubiGen::Base
+class ActiveMigrationGenerator < RubiGen::Base
 
   default_options :author => nil
 
@@ -19,7 +19,7 @@ class MigrationGenerator < RubiGen::Base
       m.directory 'app/migrations/'
 
       # Create stubs
-      m.template "migration.rb",  "app/migrations/#{@name}_migration.rb"
+      m.template "active_migration.rb",  "app/migrations/#{@name}_migration.rb"
       # m.template_copy_each ["template.rb", "template2.rb"]
       # m.file     "file",         "some_file_copied"
       # m.file_copy_each ["path/to/file", "path/to/file2"]
