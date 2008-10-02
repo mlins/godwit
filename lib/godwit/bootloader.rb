@@ -47,7 +47,7 @@ module Godwit
         Dir[File.join(Godwit::Config[:godwit_root], 'vendor', 'plugins', '*', 'lib')].each do |dir|
           $:.push dir
         end
-        Dependencies.load_paths.concat $:           
+        ActiveSupport::Dependencies.load_paths.concat $:           
       end
       
       def set_logger
