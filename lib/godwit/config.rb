@@ -57,12 +57,7 @@ module Godwit
       # Sets up the configuration by storing the given settings.
       #
       def setup(settings = {})
-        @configuration ||= {}
-        if @configuration == {}
-          @configuration = defaults.merge(settings)
-        else
-          @configuration.merge!(settings)
-        end
+        @configuration = defaults.merge(settings)
       end
       
       # Parses command line arguments and stores them in the config.

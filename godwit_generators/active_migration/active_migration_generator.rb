@@ -29,7 +29,7 @@ class ActiveMigrationGenerator < RubiGen::Base
   protected
     def banner
       <<-EOS
-Creates a ...
+Creates an active migration
 
 USAGE: #{$0} #{spec.name} name
 EOS

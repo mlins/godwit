@@ -27,7 +27,7 @@ class ActiveModelGenerator < RubiGen::Base
   protected
     def banner
       <<-EOS
-Creates a ...
+Creates a active model
 
 USAGE: #{$0} #{spec.name} name
 EOS

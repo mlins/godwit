@@ -1,4 +1,4 @@
-class <%= name.camelize %> < LegacyRecord::Base
+class Legacy::<%= name.camelize %> < LegacyRecord::Base
   
   #set_table_name 'some_legacy_table'
   

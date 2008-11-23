@@ -27,7 +27,7 @@ class LegacyModelGenerator < RubiGen::Base
   protected
     def banner
       <<-EOS
-Creates a ...
+Creates a legacy model
 
 USAGE: #{$0} #{spec.name} name
 EOS

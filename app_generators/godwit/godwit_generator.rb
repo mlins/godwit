@@ -53,11 +53,7 @@ class GodwitGenerator < RubiGen::Base
 
   protected
     def banner
-      <<-EOS
-USAGE:
-
-godwit [application_name]
-EOS
+      'USAGE: godwit [application_name]'
     end
 
     def add_options!(opts)

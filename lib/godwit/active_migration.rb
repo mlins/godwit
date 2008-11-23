@@ -12,7 +12,7 @@ module ActiveMigration
     def handle_error()
       if Godwit::Config[:silence] || !Godwit::Config[:debug]
         puts "\n\n\n"
-        raise ActiveMigrationError, 'Failed to save the active record. You should check the logs or run migrate with the -d option to debug.' 
+        raise ActiveMigrationError, 'Failed to save the active record. You should check the logs or run migrate with the -D option to debug.' 
       end
       unless @error || @skip
         debugger

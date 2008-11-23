@@ -1,5 +1,0 @@
-Description:
-Generates a Legacy Model.  A Legacy model is just a namespaced model.
-  
-Usage:
-./script generate legacy_model [model_name]
