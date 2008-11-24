@@ -3,14 +3,14 @@ require 'irb'
 module IRB # :nodoc:
   module ExtendCommand # :nodoc:
     class Continue # :nodoc:
-      def self.execute(conf)
+      def self.execute(conf) #nodoc#
         throw :IRB_EXIT, :cont
       end
     end
   end
   ExtendCommandBundle.def_extend_command "cont", :Continue
 
-  def self.start_session(binding)
+  def self.start_session(binding) #nodoc#
     unless @__initialized
       args = ARGV
       ARGV.replace(ARGV.dup)

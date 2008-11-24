@@ -1,6 +1,9 @@
 require 'optparse'
 
 module Godwit
+  
+  # Application configuration.
+  #
   class Config
 
     class << self

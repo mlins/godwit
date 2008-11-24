@@ -1,4 +1,6 @@
 module Godwit
+  # Callbacks for before and after run.
+  #
   module Callbacks
 
     CALLBACKS = %w(before_run after_run)
