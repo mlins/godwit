@@ -1,10 +1,16 @@
 module Godwit
+  # Godwit Base class.
+  #
+  # When this class is initialized, the Godwit environment is booted.
+  #
   class Base
 
     def initialize #:nodoc:
       Godwit::Bootloader.boot
     end
-
+    
+    # Starts Godwit.
+    #
     def run
       Godwit::Buffer.puts "\nLoading Migrations..." unless Godwit::Config[:silence]
       unless Godwit::Config[:specific_migration]

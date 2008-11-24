@@ -1,5 +1,5 @@
-module ActiveMigration
-  class Base
+module ActiveMigration #:nodoc:
+  class Base #:nodoc:
 
     def initialize #:nodoc:
       @error = false
