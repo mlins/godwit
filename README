@@ -5,10 +5,10 @@ Github[http://github.com/mlins/godwit]
 Godwit is a framework for the ActiveMigration[http://github.com/mlins/active_migration] library.  It provides
 a directory structure and scripts to bring ease to a migration.  Godwit is a console application.
 
-This should not be confused with Rails migrations.  Godwit and ActiveMigration[http://github.com/mlins/active_migration]
-are used for migrating data from a legacy dataset.  As of now it relys on ActiveRecord.  You must define models for
-both your legacy data and your active data.  However, Godwit can load a Rails environment so you don't have to redefine
-or sync your active models.
+This should not be confused with Rails migrations.  Godwit and ActiveMigration[http://github.com/mlins/active_migration] are
+used for migrating data from a legacy dataset.  As of now it relys on ActiveRecord.  You must define models for both your
+legacy data and your active data.  However, Godwit can load a Rails environment so you don't have to redefine or sync your
+models.
 
 Godwit and ActiveMigration[http://github.com/mlins/active_migration] were written to maintain data integrity during a migration.
 Speed was of little concern.  So, this is not an ideal solution for people who are just looking for raw dumps and/or imports.
@@ -44,7 +44,7 @@ You can than test that the environment was loaded properly by starting a console
 
   $ ./script/console
 
-If you're not using a Rails application then you can define your models in *app/models*.  There is a generator to help 
+If you're not using a Rails application then you can define your models in *app/models*.  There is a generator to help
 with this:
 
   $ ./script/generate active_model my_model
@@ -74,7 +74,7 @@ of a specific model.  You can inspect the entire binding of the migration.  Use 
 
 Once you drop to a IRB session you can inspect @active_record or @legacy_record.  Ideally you want to get @active_record
 #valid? before you're done.  When you're done, you can just type 'exit' and the migration will continue.  If you failed to
-resolve the issue, Godwit will continue to drop back to the IRB session.  You can type 'skip' and then 'exit' to skip 
+resolve the issue, Godwit will continue to drop back to the IRB session.  You can type 'skip' and then 'exit' to skip
 this particular record.
 
 == Requirements
