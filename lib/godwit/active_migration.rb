@@ -1,7 +1,7 @@
 module ActiveMigration
   class Base
 
-    def initialize
+    def initialize #:nodoc:
       @error = false
       @count = 0
       @backspaces = -1
@@ -9,7 +9,7 @@ module ActiveMigration
       @printed_class = false
     end
 
-    def handle_error()
+    def handle_error #:nodoc:
       if Godwit::Config[:silence] || !Godwit::Config[:debug]
         puts "\n\n\n"
         raise ActiveMigrationError, 'Failed to save the active record. You should check the logs or run migrate with the -D option to debug.'
@@ -24,7 +24,7 @@ module ActiveMigration
       end
     end
 
-    def handle_success()
+    def handle_success() #:nodoc:
       return if Godwit::Config[:silence]
       unless @error
         success
@@ -35,7 +35,7 @@ module ActiveMigration
       end
     end
 
-    def resolve
+    def resolve #:nodoc:
       system('clear')
       puts "The error has been resolved."
       puts "\nGodwit will continue the migration in 5 seconds..."
@@ -44,7 +44,7 @@ module ActiveMigration
       print Godwit::Buffer.buffer
     end
 
-    def no_resolve
+    def no_resolve #:nodoc:
       system('clear')
       puts "You have not resolved the error!"
       puts "Please make sure you check that @active_record.valid? is true before you type 'exit'."
@@ -52,7 +52,7 @@ module ActiveMigration
       sleep(5)
     end
 
-    def debugger
+    def debugger #:nodoc:
       system('clear')
       puts "Godwit " + Godwit::VERSION::STRING
       puts "\nCurrent Migration: " + self.class.to_s
@@ -68,7 +68,7 @@ module ActiveMigration
       IRB.start_session(binding)
     end
 
-    def success
+    def success #:nodoc:
       if @active_record.is_a?(Array)
         if @active_array
           if @active_array != @active_record.object_id

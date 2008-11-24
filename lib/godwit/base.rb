@@ -1,7 +1,7 @@
 module Godwit
   class Base
 
-    def initialize
+    def initialize #:nodoc:
       Godwit::Bootloader.boot
     end
 
@@ -17,12 +17,12 @@ module Godwit
 
     protected
 
-    def run_single
+    def run_single #:nodoc:
       migration = Godwit::Config[:specific_migration].camelize.constantize
       migration.new.run(Godwit::Config[:skip_dependencies])
     end
 
-    def run_all
+    def run_all #:nodoc:
       Dir.foreach(File.join(Godwit::Config[:godwit_root], 'app', 'migrations')) do |file|
         next unless file.ends_with?('migration.rb')
         migration = file[0..-4].camelize.constantize

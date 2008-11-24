@@ -26,10 +26,10 @@ begin
     s.homepage = "http://github.com/mlins/godwit"
     s.description = "A framework to assist in the migration of data from legacy databases."
     s.authors = ["Matt Lins"]
-    s.files = FileList["[A-Z]*", "{lib,spec,app_generators,godwit_generators}/**/*"]
+    s.files = FileList["[A-Z]*", "{lib,spec,app_generators,godwit_generators,tmp}/**/*"]
     s.executables = ['godwit']
     s.add_dependency 'activesupport', '>= 2.1.0'
-    s.add_dependency 'mlins-active_migration', '>= 1.0.3'
+    s.add_dependency 'mlins-active_migration', '>= 1.0.4'
     s.add_dependency 'rubigen', '>= 1.3.4'
   end
 rescue LoadError
