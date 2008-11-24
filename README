@@ -5,15 +5,15 @@ Github[http://github.com/mlins/godwit]
 Godwit is a framework for the ActiveMigration[http://github.com/mlins/active_migration] library.  It provides
 a directory structure and scripts to bring ease to a migration.  Godwit is a console application.
 
-This should not be confused with Rails migrations.  Godwit and ActiveMigration[http://github.com/mlins/active_migration] are
-used for migrating data from a legacy dataset.  As of now it relys on ActiveRecord.  You must define models for both your
-legacy data and your active data.  However, Godwit can load a Rails environment so you don't have to redefine or sync your
-models.
+This should not be confused with Rails migrations.  Godwit and
+ActiveMigration[http://github.com/mlins/active_migration] are used for migrating data from a legacy dataset.
+As of now it relys on ActiveRecord.  You must define models for both your legacy data and your active data.
+However, Godwit can load a Rails environment so you don't have to redefine or sync your models.
 
-Godwit and ActiveMigration[http://github.com/mlins/active_migration] were written to maintain data integrity during a migration.
-Speed was of little concern.  So, this is not an ideal solution for people who are just looking for raw dumps and/or imports.
-I designed this to use all of the validations, callbacks and plugins from my new(active) application.  See
-ActiveMigration[http://github.com/mlins/active_migration] for more details.
+Godwit and ActiveMigration[http://github.com/mlins/active_migration] were written to maintain data integrity
+during a migration.  Speed was of little concern.  So, this is not an ideal solution for people who are just
+looking for raw dumps and/or imports.  I designed this to use all of the validations, callbacks and plugins
+from my new(active) application.  See ActiveMigration[http://github.com/mlins/active_migration] for more details.
 
 *Features*
 
@@ -35,8 +35,9 @@ You'll first want to create a base application with the Godwit binary:
 
   $ godwit myapp
 
-If you plan on migrating to a database that is used by a Rails application, you can load the Rails environment so
-you don't have to redefine your models.  Inside of *config/environment.rb* set the path to the root of the Rails app:
+If you plan on migrating to a database that is used by a Rails application, you can load the Rails environment
+so you don't have to redefine your models.  Inside of *config/environment.rb* set the path to the root of the
+Rails app:
 
   config[:rails_root] = '/my/new/rails/app'
 
@@ -44,38 +45,39 @@ You can than test that the environment was loaded properly by starting a console
 
   $ ./script/console
 
-If you're not using a Rails application then you can define your models in *app/models*.  There is a generator to help
-with this:
+If you're not using a Rails application then you can define your models in *app/models*.  There is a generator
+to help with this:
 
   $ ./script/generate active_model my_model
 
-Next, you'll need to define some models (ActiveRecord) for your legacy tables.  Godwit namespaces legacy models with
-the Legacy module.  They live in the *app/models/legacy* directory.  There is a generator for this:
+Next, you'll need to define some models (ActiveRecord) for your legacy tables.  Godwit namespaces legacy models
+with the Legacy module.  They live in the *app/models/legacy* directory.  There is a generator for this:
 
   $ ./script/generate legacy_model my_model
 
 When you have all your models defined and tested, you can start creating migrations.  They live in *app/migrations*.
-See ActiveMigration[http://github.com/mlins/active_migration] for more details.  There is a generator to create migrations:
+See ActiveMigration[http://github.com/mlins/active_migration] for more details.  There is a generator to create
+migrations:
 
   $ ./script/generate active_migration my_migration
 
-When you're actually ready to run your migrations, you can use the *migrate* script.  This script has a few options, so run
-this for help:
+When you're actually ready to run your migrations, you can use the *migrate* script.  This script has a few
+options, so run this for help:
 
   $ ./script/migrate -h
 
-If you run *migrate* without any options, it'll run all of your migrations.  It will respect any dependencies defined in your
-migrations.
+If you run *migrate* without any options, it'll run all of your migrations.  It will respect any dependencies
+defined in your migrations.
 
 If you need to debug a migration, Godwit provides a handy IRB session if #save fails during the migration
 of a specific model.  You can inspect the entire binding of the migration.  Use the -D option to run in debug mode.
 
   $ ./script/migrate -D
 
-Once you drop to a IRB session you can inspect @active_record or @legacy_record.  Ideally you want to get @active_record
-#valid? before you're done.  When you're done, you can just type 'exit' and the migration will continue.  If you failed to
-resolve the issue, Godwit will continue to drop back to the IRB session.  You can type 'skip' and then 'exit' to skip
-this particular record.
+Once you drop to a IRB session you can inspect @active_record or @legacy_record.  Ideally you want to get
+@active_record #valid? before you're done.  When you're done, you can just type 'exit' and the migration will continue.
+If you failed to resolve the issue, Godwit will continue to drop back to the IRB session.  You can type 'skip' and
+then 'exit' to skip this particular record.
 
 == Requirements
 
