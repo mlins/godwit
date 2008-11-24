@@ -5,6 +5,7 @@ require File.join(File.dirname(__FILE__), '..', 'lib', 'godwit')
 describe 'Godwit::Config' do
   
   before do
+    Godwit::Config.configuration = nil
     Godwit::Config.setup
   end
   
