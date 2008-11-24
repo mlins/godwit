@@ -28,7 +28,7 @@ begin
     s.authors = ["Matt Lins"]
     s.files = FileList["[A-Z]*", "{lib,spec,app_generators,godwit_generators}/**/*"]
     s.executables = ['godwit']
-    s.add_dependency 'activesupport', '>= 2.2.2'
+    s.add_dependency 'activesupport', '>= 2.1.0'
     s.add_dependency 'mlins-active_migration', '>= 1.0.3'
     s.add_dependency 'rubigen', '>= 1.3.4'
   end
