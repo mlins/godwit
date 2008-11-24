@@ -1,18 +1,18 @@
 module ActiveMigration
   class Base
-    
+
     def initialize
-      @error = false 
+      @error = false
       @count = 0
       @backspaces = -1
       @percentage = 0
       @printed_class = false
-    end 
-    
+    end
+
     def handle_error()
       if Godwit::Config[:silence] || !Godwit::Config[:debug]
         puts "\n\n\n"
-        raise ActiveMigrationError, 'Failed to save the active record. You should check the logs or run migrate with the -D option to debug.' 
+        raise ActiveMigrationError, 'Failed to save the active record. You should check the logs or run migrate with the -D option to debug.'
       end
       unless @error || @skip
         debugger
@@ -26,7 +26,7 @@ module ActiveMigration
 
     def handle_success()
       return if Godwit::Config[:silence]
-      unless @error    
+      unless @error
         success
       else
         resolve
@@ -34,7 +34,7 @@ module ActiveMigration
         @error = false
       end
     end
-    
+
     def resolve
       system('clear')
       puts "The error has been resolved."
@@ -43,7 +43,7 @@ module ActiveMigration
       system('clear')
       print Godwit::Buffer.buffer
     end
-    
+
     def no_resolve
       system('clear')
       puts "You have not resolved the error!"
@@ -51,7 +51,7 @@ module ActiveMigration
       puts "\nYou will return to the debug console in 5 seconds..."
       sleep(5)
     end
-    
+
     def debugger
       system('clear')
       puts "Godwit " + Godwit::VERSION::STRING
@@ -67,7 +67,7 @@ module ActiveMigration
       puts "\n"
       IRB.start_session(binding)
     end
-    
+
     def success
       if @active_record.is_a?(Array)
         if @active_array
@@ -88,10 +88,10 @@ module ActiveMigration
       if @count == 1 && !@printed_class
         Godwit::Buffer.print("\n" + self.class.to_s + "\t\t\t")
         @printed_class = true
-      end 
+      end
       Godwit::Buffer.print(("\b" * (@backspaces + 1)) + @percentage + '%')
       @backspaces = @percentage.length
     end
-    
+
   end
 end

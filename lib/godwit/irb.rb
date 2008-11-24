@@ -9,7 +9,7 @@ module IRB # :nodoc:
     end
   end
   ExtendCommandBundle.def_extend_command "cont", :Continue
-  
+
   def self.start_session(binding)
     unless @__initialized
       args = ARGV
@@ -18,7 +18,7 @@ module IRB # :nodoc:
       ARGV.replace(args)
       @__initialized = true
     end
-    
+
     workspace = WorkSpace.new(binding)
 
     irb = Irb.new(workspace)
